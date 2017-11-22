@@ -1,0 +1,11 @@
+node_id,name,parent_node_id,node_type,parent_node_type,parent_relation,weight
+JAVA:INT:1,Search Query Intent,,intent,intent,,0
+JAVA:INT:2,define,JAVA:INT:1,intent,intent,IntentOf,0
+JAVA:INT:3,how,JAVA:INT:1,intent,intent,IntentOf,0
+JAVA:INT:4,what,JAVA:INT:2,term,intent,sameAs,3
+JAVA:INT:5,characterize,JAVA:INT:2,term,intent,sameAs,0
+JAVA:INT:6,explain,JAVA:INT:2,term,intent,sameAs,0
+JAVA:INT:7,identify,JAVA:INT:2,term,intent,sameAs,9
+JAVA:INT:8,meaning,JAVA:INT:2,term,intent,sameAs,6
+JAVA:INT:9,examples,JAVA:INT:3,term,intent,sameAs,4
+JAVA:INT:10,ways,JAVA:INT:3,term,intent,sameAs,6
