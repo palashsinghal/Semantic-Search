@@ -76,12 +76,12 @@ public class ScoreService {
 		log.info("Input terms: " + map);
 
 		for (String key : map.keySet()) {
+			
 			List<Double> ResultList = null;
 
 			try {
 
 				if (map.get(key) != 0) {
-
 					ResultList = findWeight(key.trim(), termweight);
 				} else
 					continue;
@@ -251,7 +251,7 @@ public class ScoreService {
 					String json = gson.toJson(it.getLevel());
 
 					Level level = gson.fromJson(json, Level.class);
-					
+
 					parent = level.getName();
 					log.info("parent : " + parent + " found as starting");
 				}

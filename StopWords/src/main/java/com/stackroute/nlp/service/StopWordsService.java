@@ -20,7 +20,7 @@ public class StopWordsService {
 	SenderService sender;
 
 	// remove stopwords
-	public String removeStopwords(String[] words, String[] pos) {
+	public StopWordsResult removeStopwords(String[] words, String[] pos) {
 		// for (String word:pos)
 		// System.out.println(word);
 
@@ -82,7 +82,8 @@ public class StopWordsService {
 
 		stopWordsResult.setWords(finalwords);
 		stopWordsResult.setPos(finalpos);
-		sender.send(stopWordsResult);
-		return "done";
+		return stopWordsResult;
+		//sender.send(stopWordsResult);
+		
 	}
 }

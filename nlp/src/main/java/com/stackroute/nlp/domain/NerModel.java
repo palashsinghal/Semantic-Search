@@ -9,6 +9,9 @@ public class NerModel {
 	
 	// Keywords stored in array of strings keywords
 		private ArrayList<String> keywords;
+		
+		private String query;
+		private String correctedquery;
 
 
 	public NerModel() {
@@ -35,6 +38,22 @@ public class NerModel {
 
 	public void setKeywords(ArrayList<String> keywords) {
 		this.keywords = keywords;
+	}
+
+	public String getQuery() {
+		return query;
+	}
+
+	public void setQuery(String query) {
+		this.query = query;
+	}
+
+	public String getCorrectedquery() {
+		return correctedquery;
+	}
+
+	public void setCorrectedquery(String correctedquery) {
+		this.correctedquery = correctedquery;
 	}
 
 	

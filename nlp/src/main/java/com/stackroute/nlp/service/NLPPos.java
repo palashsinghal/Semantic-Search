@@ -1,6 +1,8 @@
 package com.stackroute.nlp.service;
 
+import com.stackroute.nlp.domain.PosModel;
+
 public interface NLPPos {
 			
-	public void findPos(String sentence);
+	public PosModel findPos(String sentence);
 }

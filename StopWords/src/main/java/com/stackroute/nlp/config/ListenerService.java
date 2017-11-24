@@ -8,7 +8,10 @@ import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.stereotype.Service;
 
 import com.stackroute.nlp.domain.PosModel;
+import com.stackroute.nlp.domain.StopWordsResult;
 import com.stackroute.nlp.service.StopWordsService;
+
+import ch.qos.logback.core.net.SyslogOutputStream;
 
 
 
@@ -24,7 +27,7 @@ public class ListenerService {
     SenderService sender;
 
     
-    @KafkaListener(topics = "posproducer1")
+    @KafkaListener(topics = "posproducer2")
     public void listen(PosModel record) throws IOException {
     
 //        System.out.println(record.getPosmap());
@@ -38,8 +41,13 @@ public class ListenerService {
     	System.out.println(pos[i]);
     	}
      
-    	stopWordsService.removeStopwords(words, pos);
-     //   sender.send(result);
+    	StopWordsResult swr=stopWordsService.removeStopwords(words, pos);
+    	
+    	swr.setQuery(record.getQuery());
+    	swr.setCorrectedquery(record.getCorrectedquery());
+    	
+    	
+        sender.send(swr);
         
         
         countDownLatch1.countDown();

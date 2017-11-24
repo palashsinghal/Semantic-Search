@@ -22,7 +22,7 @@ public class Listener {
 
 	public final CountDownLatch countDownLatch1 = new CountDownLatch(1);
 
-	@KafkaListener(topics = "nerproducer5")
+	@KafkaListener(topics = "nerproducer1")
 	public void listen(NerModel record) {
 		System.out.println("Intent Service is listening");
 
@@ -62,6 +62,14 @@ public class Listener {
 		intentSearchResult.setConcept(concept);
 		System.out.println("listening?" + intent);
 		System.out.println("CONCEPT" + concept);
+		
+		intentSearchResult.setQuery(record.getQuery());
+		intentSearchResult.setCorrectedquery(record.getCorrectedquery());
+		System.out.println("INSIDE LISTENER");
+		
+		System.out.println(intentSearchResult.getQuery());
+		System.out.println(intentSearchResult.getCorrectedquery());
+		
 		
 		sender.send(intentSearchResult);
 		System.out.println("intent search result has been sent");

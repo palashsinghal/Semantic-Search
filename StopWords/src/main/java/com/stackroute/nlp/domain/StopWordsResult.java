@@ -11,6 +11,9 @@ public class StopWordsResult {
 	ArrayList<String> words=new ArrayList<String>();
 
 	ArrayList<String> pos=new ArrayList<String>();
+	
+	private String query;
+	private String correctedquery;
 
 	public ArrayList<String> getWords() {
 		return words;
@@ -36,6 +39,22 @@ public class StopWordsResult {
 
 	public StopWordsResult() {
 		super();
+	}
+
+	public String getQuery() {
+		return query;
+	}
+
+	public void setQuery(String query) {
+		this.query = query;
+	}
+
+	public String getCorrectedquery() {
+		return correctedquery;
+	}
+
+	public void setCorrectedquery(String correctedquery) {
+		this.correctedquery = correctedquery;
 	}
 	
 }
