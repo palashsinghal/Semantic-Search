@@ -77,7 +77,11 @@ services:
       - "8096:8096"
     depends_on : 
       - kafka
+<<<<<<< HEAD
       - graph
+=======
+      # - graph
+>>>>>>> b4c3bfccafa7235214d4e47f3f61a5b5e4ec7cd1
       - eureka
 
   spellchecker :
@@ -107,7 +111,11 @@ services:
   lemmatizer :
     build : ./Lemmatizer
     ports :
+<<<<<<< HEAD
       - "8054:8054"
+=======
+      - "8056:8056"
+>>>>>>> b4c3bfccafa7235214d4e47f3f61a5b5e4ec7cd1
     depends_on :
       - kafka
       - eureka
