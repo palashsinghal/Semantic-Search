@@ -29,10 +29,9 @@ public class NLPPosService implements NLPPos {
 	// finding Parts_Of_Speech
 	PosModel posmodel = new PosModel();
 
-	@Autowired
-	SenderPoS sender;
 
-	public void findPos(String sentence) {
+
+	public  PosModel findPos(String sentence) {
 
 		String[] words = new String[20];
 		String[] pos = new String[20];
@@ -73,8 +72,8 @@ public class NLPPosService implements NLPPos {
 
 			posmodel.setPos(tags);
 			posmodel.setWords(tokens);
-
-			sender.send(posmodel);
+			
+			//sender.send(posmodel);
 
 		} catch (IOException e) {
 			// Model loading failed, handle the error
@@ -93,6 +92,8 @@ public class NLPPosService implements NLPPos {
 				}
 			}
 		}
+		return posmodel;
+		
 	}
-
+	
 }

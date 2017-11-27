@@ -26,27 +26,28 @@
 		<dependency>
 			<groupId>org.slf4j</groupId>
 			<artifactId>slf4j-api</artifactId>
-			<version>1.7.19</version>
 		</dependency>
 		<dependency>
 			<groupId>org.apache.logging.log4j</groupId>
 			<artifactId>log4j-slf4j-impl</artifactId>
-			<version>2.5</version>
 		</dependency>
 		<dependency>
 			<groupId>org.apache.logging.log4j</groupId>
 			<artifactId>log4j-api</artifactId>
-			<version>2.5</version>
 		</dependency>
 		<dependency>
 			<groupId>org.apache.logging.log4j</groupId>
 			<artifactId>log4j-core</artifactId>
-			<version>2.5</version>
 		</dependency>
 		<dependency>
 			<groupId>org.apache.logging.log4j</groupId>
 			<artifactId>log4j-jcl</artifactId>
-			<version>2.5</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-eureka</artifactId>
+			<version>1.2.6.RELEASE</version>
 		</dependency>
 
 		<!--#############################Test dependencies########################################## -->
@@ -56,7 +57,6 @@
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
-			<version>4.12</version>
 			<scope>test</scope>
 			<exclusions>
 				<exclusion>
@@ -69,8 +69,7 @@
 		<dependency>
 			<groupId>com.jayway.jsonpath</groupId>
 			<artifactId>json-path-assert</artifactId>
-			<version>2.0.0</version>
-		</dependency>
+			</dependency>
 
 		<!--#############################Swagger Documentation for REST API########################################## -->
 		<dependency>
@@ -88,20 +87,35 @@
 		</dependency>
 
 	</dependencies>
+	
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>org.springframework.cloud</groupId>
+				<artifactId>spring-cloud-dependencies</artifactId>
+				<version>Camden.SR6</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
 
 	<!-- TODO: add modules here -->
 	<modules>
+		<module>Api-Gateway</module>
+		<module>discovery-service-eureka</module>
 		<module>GoogleApi</module>
 		<module>Crawler</module>
 		<module>Parser</module>
 		<module>Semantic-Search-Index</module>
 		<module>neo4j-concept</module>
 		<module>neo4j-intent</module>
-		<module>SpellChecker</module>
+		<module>spell-checker</module>
 		<module>nlp</module>
 		<module>StopWords</module>
 		<module>Lemmatizer</module>
 		<module>IntentSearchService</module>
 		<module>stomp</module>
+		<module>domainexpert</module>
 	</modules>
 </project>

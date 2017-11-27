@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.Map;
 import org.apache.kafka.clients.producer.ProducerConfig;
 import org.apache.kafka.common.serialization.StringSerializer;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.kafka.annotation.EnableKafka;
@@ -18,6 +19,12 @@ import com.stackroute.nlp.domain.PosModel;
 @Configuration
 @EnableKafka
 public class KafkaProducer  {
+	
+	@Value("${spring.kafka.bootstrap-servers}")
+	private String bootstrapServer;
+
+	@Value("${spring.kafka.consumer.group-id}")
+	private String groupId;
     
 //  @ConditionalOnMissingBean(KafkaProducerConfig.class)
     
@@ -26,7 +33,7 @@ public class KafkaProducer  {
       Map<String, Object> configProps = new HashMap<String, Object>();
       configProps.put(
         ProducerConfig.BOOTSTRAP_SERVERS_CONFIG,
-        "172.23.238.157:9092");
+        bootstrapServer);
       configProps.put(
         ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG,
         StringSerializer.class);
@@ -46,7 +53,7 @@ public class KafkaProducer  {
      Map<String, Object> configProps = new HashMap<String, Object>();
      configProps.put(
        ProducerConfig.BOOTSTRAP_SERVERS_CONFIG,
-       "172.23.238.157:9092");
+       bootstrapServer);
      configProps.put(
        ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG,
        StringSerializer.class);

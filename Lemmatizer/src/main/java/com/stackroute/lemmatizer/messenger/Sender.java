@@ -12,7 +12,7 @@ public class Sender {
 	@Autowired
 	private KafkaTemplate<String, LemmatizedQuery> kafkaTemplate;
 	
-	String kafkaTopic="lemmatizer1";
+	String kafkaTopic="lemmatizer3";
 
 	
 	public void send(LemmatizedQuery message) {
@@ -24,5 +24,7 @@ public class Sender {
 		for (String word:words)
 		System.out.println(word);
 		
+		System.out.println("QUERY: "+message.getQuery());
+		System.out.println("CORRECTED QUERY: "+message.getCorrectedquery());
 	}
 }

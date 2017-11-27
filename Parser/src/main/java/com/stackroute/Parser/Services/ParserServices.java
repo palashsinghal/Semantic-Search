@@ -16,8 +16,8 @@ public class ParserServices {
   
 	
 //	idf values
-	int metaidf = 2;
-	int titleidf = 3;
+	int metaidf = 12;
+	int titleidf = 9;
 	int h1idf=6;
 	int h2idf=5;
 	int h3idf=4;

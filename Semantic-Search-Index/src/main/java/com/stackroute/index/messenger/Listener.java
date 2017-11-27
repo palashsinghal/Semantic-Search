@@ -78,16 +78,14 @@ public class Listener {
 	public void listen(ListIndicator record) {
 
 		log.info("Received Data " + record);
-		
+
 		Indicator temp = record.getListindicator().iterator().next();
-		
-		log.info("record id : "+temp.getId());
-		log.info("record weight : "+ temp.getWeight());
-		
+
+		log.info("record id : " + temp.getId());
+		log.info("record weight : " + temp.getWeight());
+
 		setTermweight(record.getListindicator());
 
-		
-		
 		// if(indexermodel.getTitle()!=null)
 		// {
 		//

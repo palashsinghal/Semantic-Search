@@ -85,7 +85,7 @@ public class Listener {
 		// setIntentsearchresult(record);
 		System.out.println(record.getConcept());
 		System.out.println(record.getIntent());
-		ListUrls result = new ListUrls(urlService.getresults(record.getConcept(), record.getIntent()));
+		ListUrls result = new ListUrls(record.getQuery(), record.getCorrectedquery(),urlService.getresults(record.getConcept(), record.getIntent()));
 
 		sender.send(result);
 		// this.setFake(true);

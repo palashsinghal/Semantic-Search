@@ -23,7 +23,7 @@ public class Listener {
 	@Autowired
 	LemmatizerAppService lemmatizerAppService;
 
-	@KafkaListener(id = "foo", topics = "stopwords", group = "group1")
+	@KafkaListener(id = "foo", topics = "stopwords1", group = "group1")
 	public void listen(StopWordsResult record) throws IOException {
 
 		System.out.println("Query:" + record.getWords());
@@ -32,8 +32,12 @@ public class Listener {
 		ArrayList<String> getpos = record.getPos();
 
 		LemmatizedQuery result = lemmatizerAppService.lemmatizedString(getwords, getpos);
+		result.setQuery(record.getQuery());
+		result.setCorrectedquery(record.getCorrectedquery());
 		System.out.println("The result is:");
 		System.out.println(result.getLemQuery());
+
+		
 
 		sender.send(result);
 

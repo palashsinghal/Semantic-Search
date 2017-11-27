@@ -3,10 +3,10 @@ FROM openjdk:8-jre-alpine
 
 VOLUME /tmp
 
-COPY javaIntent.csv ./
+COPY /intents/javaIntent.csv ./
 
 #add the local jar to docker context (jar in target folder after mvn package)
-ADD ./target/neo4j-intent-0.1.0.jar neo4jIntent.jar
+ADD ./target/neo4j-intent-0.0.1-SNAPSHOT.jar neo4jIntent.jar
 
 #different port for each image
 EXPOSE 8096

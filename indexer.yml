@@ -1,0 +1,80 @@
+version: "2"
+services:
+  kafka :
+    image : spotify/kafka
+    container_name : kafka
+    ports :
+      - "9092:9092"
+      - "2181:2181"
+    environment:
+      - ADVERTISED_PORT=9092
+
+  eureka:
+    build : ./discovery-service-eureka
+    container_name : eureka
+    ports :
+      - "8090:8090"
+  
+  graph :
+    image : neo4j
+    container_name : neo4jgraph
+    ports : 
+      - "7474:7474"
+      - "7687:7687"
+
+  domainexpert : 
+    build : ./domainexpert
+    ports : 
+      - "8089:8089"
+    depends_on :
+      - kafka
+      - eureka
+  
+  googleapi :
+    build : ./GoogleApi
+    ports :
+      - "8081:8081"
+    depends_on :
+      - kafka
+      - eureka
+  
+  crawler : 
+    build : ./Crawler
+    ports :
+      - "8070:8070"
+    depends_on : 
+      - kafka
+      - eureka
+  
+  parser :
+    build : ./Parser
+    ports :
+      - "8060:8060"
+    depends_on :
+      - kafka
+  
+  indexer :
+    build : ./Semantic-Search-Index
+    ports :
+      - "8085:8085"
+    depends_on :
+      - kafka
+      - eureka 
+  
+  conceptgraph :
+    build : ./neo4j-concept
+    ports :
+      - "8095:8095"
+    depends_on :
+      - kafka
+      - graph
+      - eureka
+  
+  intentgraph :
+    build : ./neo4j-intent
+    ports :
+      - "8096:8096"
+    depends_on : 
+      - kafka
+      - graph
+      - eureka

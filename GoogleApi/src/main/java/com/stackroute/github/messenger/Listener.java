@@ -1,7 +1,6 @@
 package com.stackroute.github.messenger;
 
 
-
 import java.io.File;
 import java.io.FileReader;
 import java.util.ArrayList;
@@ -18,7 +17,6 @@ import org.springframework.kafka.annotation.KafkaListener;
 import com.stackroute.github.domain.DomainConcept;
 import com.stackroute.github.domain.SearchResultsModel;
 import com.stackroute.github.repository.ApiRepository;
-
 import com.stackroute.github.services.ApiService;
 
 public class Listener {

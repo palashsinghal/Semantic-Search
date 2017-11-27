@@ -13,13 +13,16 @@ public class SenderService {
 	private KafkaTemplate<String, StopWordsResult> kafkaTemplate;
 	// private static final Logger LOGGER = LoggerFactory.getLogger(Sender.class);
 
-	String kafkaTopic = "stopwords";
+	String kafkaTopic = "stopwords1";
 
 	// @Async
 	public void send(StopWordsResult message) {
 		
 		System.out.println("stopwords is sending");
 		System.out.println("Query:" +message.getWords());
+		System.out.println("stopwrods is sending");
+    	System.out.println("query: "+message.getQuery());
+    	System.out.println("corrected query: "+message.getCorrectedquery());
 		
 
 		kafkaTemplate.send(kafkaTopic, message);

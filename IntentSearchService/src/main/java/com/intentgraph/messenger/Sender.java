@@ -20,6 +20,11 @@ public class Sender {
 
 	public void send(IntentSearchResult message) {
 		System.out.println("kafka is sending " + message);
+		System.out.println("intent: "+message.getIntent());
+		System.out.println("concept: "+message.getConcept());
+		System.out.println("QUERY: "+message.getQuery());
+		System.out.println("CORRECTED QUERY: "+message.getCorrectedquery());
+		
 		kafkaTemplate1.send(kafkaTopic, message);
 	}
 }

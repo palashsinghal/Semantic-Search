@@ -56,32 +56,31 @@ import org.springframework.kafka.support.serializer.JsonSerializer;
 
 import com.stackroute.github.domain.SearchResultsModel;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.kafka.core.DefaultKafkaProducerFactory;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.kafka.core.ProducerFactory;
+
 @Configuration
 
-public class KafkaProducerConfig  {
-	@Bean
-    public ProducerFactory<String, SearchResultsModel> producerFactory() {
-        Map<String, Object> configProps = new HashMap<String, Object>();
-        configProps.put(
-          ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, 
-          "172.23.238.157:9092");
-        configProps.put(
-          ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, 
-          StringSerializer.class);
-        configProps.put(
-          ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, 
-          JsonSerializer.class);
-        return new DefaultKafkaProducerFactory<String, SearchResultsModel>(configProps);
-    }
- 
-    @Bean
-    public KafkaTemplate<String,SearchResultsModel> kafkaTemplate() {
-        return new KafkaTemplate<String, SearchResultsModel>(producerFactory());
-    }
-}
+public class KafkaProducerConfig {
 
+	@Value("${spring.kafka.bootstrap-servers}")
+	private String bootstrapServer;
+
+	@Bean
+	public ProducerFactory<String, SearchResultsModel> producerFactory() {
+		Map<String, Object> configProps = new HashMap<String, Object>();
+		configProps.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, bootstrapServer);
+		configProps.put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, StringSerializer.class);
+		configProps.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, JsonSerializer.class);
+		return new DefaultKafkaProducerFactory<String, SearchResultsModel>(configProps);
+	}
+
+	@Bean
+	public KafkaTemplate<String, SearchResultsModel> kafkaTemplate() {
+		return new KafkaTemplate<String, SearchResultsModel>(producerFactory());
+	}
+}

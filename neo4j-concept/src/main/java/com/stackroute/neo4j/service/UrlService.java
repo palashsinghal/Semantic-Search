@@ -113,7 +113,7 @@ public class UrlService {
 		List<UrlRelation> myList1 = new ArrayList<UrlRelation>();
 		for (int i = 0; i < myList.size(); i++) {
 			System.out.println(myList.get(i).getConcept2().getName());
-			if (concept.contains(myList.get(i).getConcept2().getName())) {
+			if (myList.get(i).getConcept2().getName().equalsIgnoreCase(concept.trim())) {
 				System.out.println("INSIDE IF");
 				myList1.add(myList.get(i));
 			}
